@@ -1,27 +1,70 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+
 export default function Home() {
+  const { user } = useContext(AuthContext);
+
   return (
-    <div className="px-6 py-20 max-w-6xl mx-auto text-center">
+    <section className="py-24">
 
-      <h1 className="text-5xl font-bold">
-        ShiftX — Smart Task Management
-      </h1>
+      <div className="max-w-6xl mx-auto text-center">
 
-      <p className="text-gray-400 mt-4 max-w-xl mx-auto">
-        Organize tasks, track progress, and boost productivity.
-      </p>
+        <div className="inline-flex items-center px-4 py-2 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-300 text-sm mb-8">
+          Modern SaaS Task Management
+        </div>
 
-      <div className="mt-8 flex gap-4 justify-center">
-        <a className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-black rounded-xl"
-           href="/register">
-          Get Started
-        </a>
+        <h1 className="text-6xl font-bold leading-tight">
+          Organize Work.
+          <br />
+          <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Ship Faster.
+          </span>
+        </h1>
 
-        <a className="px-6 py-3 border border-white/20 rounded-xl"
-           href="/login">
-          Login
-        </a>
+        <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-400">
+          ShiftX helps teams manage tasks, prioritize work,
+          track deadlines, and stay productive with a modern,
+          distraction-free workspace.
+        </p>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+
+          {user ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 font-semibold text-white hover:scale-105 transition"
+              >
+                Open Dashboard
+              </Link>
+
+              <button className="px-8 py-4 rounded-xl border border-white/10 bg-white/5">
+                {user?.email || "Logged In"}
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/register"
+                className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 font-semibold text-white hover:scale-105 transition"
+              >
+                Get Started Free
+              </Link>
+
+              <Link
+                to="/login"
+                className="px-8 py-4 rounded-xl border border-white/10 hover:border-purple-500 transition"
+              >
+                Sign In
+              </Link>
+            </>
+          )}
+
+        </div>
+
       </div>
 
-    </div>
-  )
+    </section>
+  );
 }

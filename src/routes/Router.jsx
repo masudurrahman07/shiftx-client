@@ -14,7 +14,7 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
 
-        {/* PUBLIC */}
+        {/* PUBLIC + AUTH LAYOUT */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
 
@@ -28,7 +28,7 @@ export default function Router() {
           />
         </Route>
 
-        {/* AUTH */}
+        {/* AUTH PAGES */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
