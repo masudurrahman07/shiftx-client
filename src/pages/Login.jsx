@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 export default function Login() {
   const navigate = useNavigate();
-
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -26,11 +28,12 @@ export default function Login() {
 
       localStorage.setItem("token", res.data.token);
 
+      login();
+
       navigate("/dashboard");
     } catch (err) {
       setError(
-        err?.response?.data?.error ||
-          "Unable to sign in. Please try again."
+        err?.response?.data?.error || "Unable to sign in. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -40,16 +43,11 @@ export default function Login() {
   return (
     <div className="w-full max-w-md">
       <div className="bg-[#171f33]/70 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold">
-            Welcome Back
-          </h1>
+          <h1 className="text-4xl font-bold">Welcome Back</h1>
 
-          <p className="text-gray-400 mt-2">
-            Sign in to continue to ShiftX
-          </p>
+          <p className="text-gray-400 mt-2">Sign in to continue to ShiftX</p>
         </div>
 
         {/* Error */}
@@ -61,7 +59,6 @@ export default function Login() {
 
         {/* Form */}
         <form onSubmit={handleLogin} className="space-y-5">
-
           {/* Email */}
           <div>
             <label className="block mb-2 text-sm text-gray-300">
@@ -80,9 +77,7 @@ export default function Login() {
 
           {/* Password */}
           <div>
-            <label className="block mb-2 text-sm text-gray-300">
-              Password
-            </label>
+            <label className="block mb-2 text-sm text-gray-300">Password</label>
 
             <div className="relative">
               <input
