@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../services/api";
+import Swal from "sweetalert2";
 
 export default function TaskDrawer({ open, onClose, onTaskCreated }) {
   const [form, setForm] = useState({
@@ -29,9 +30,31 @@ export default function TaskDrawer({ open, onClose, onTaskCreated }) {
       });
 
       onTaskCreated(res.data);
+
+      await Swal.fire({
+        icon: "success",
+        title: "Task Created!",
+        text: "Your task has been created successfully.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      setForm({
+        title: "",
+        description: "",
+        priority: "medium",
+        dueDate: "",
+      });
+
       onClose();
     } catch (err) {
       console.error(err);
+
+      Swal.fire({
+        icon: "error",
+        title: "Creation Failed",
+        text: "Failed to create task. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
@@ -54,7 +77,6 @@ export default function TaskDrawer({ open, onClose, onTaskCreated }) {
         }`}
       >
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
-
           <h2 className="text-2xl font-bold">Create Task</h2>
 
           {/* TITLE */}
@@ -82,11 +104,30 @@ export default function TaskDrawer({ open, onClose, onTaskCreated }) {
             name="priority"
             value={form.priority}
             onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-white/5 border border-white/10"
+            className="
+    w-full
+    p-3
+    rounded-lg
+    bg-slate-800
+    text-white
+    border
+    border-white/10
+    focus:outline-none
+    focus:ring-2
+    focus:ring-purple-500
+  "
           >
-            <option value="low">Low Priority</option>
-            <option value="medium">Medium Priority</option>
-            <option value="high">High Priority</option>
+            <option value="low" className="bg-slate-800 text-white">
+              Low Priority
+            </option>
+
+            <option value="medium" className="bg-slate-800 text-white">
+              Medium Priority
+            </option>
+
+            <option value="high" className="bg-slate-800 text-white">
+              High Priority
+            </option>
           </select>
 
           {/* DUE DATE */}

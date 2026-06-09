@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import Swal from "sweetalert2";
 
-export default function EditTaskModal({
-  open,
-  onClose,
-  task,
-  onTaskUpdated,
-}) {
+export default function EditTaskModal({ open, onClose, task, onTaskUpdated }) {
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -17,7 +13,6 @@ export default function EditTaskModal({
 
   const [loading, setLoading] = useState(false);
 
-  // Sync form when task changes
   useEffect(() => {
     if (!task) return;
 
@@ -30,7 +25,6 @@ export default function EditTaskModal({
     });
   }, [task]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -40,12 +34,11 @@ export default function EditTaskModal({
     }));
   };
 
-  // Submit update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!task || !task._id) {
-      console.error("Missing task or task._id");
+    if (!task?._id) {
+      console.error("Missing task ID");
       return;
     }
 
@@ -63,38 +56,40 @@ export default function EditTaskModal({
         payload.dueDate = form.dueDate;
       }
 
-      const res = await api.patch(
-        `/tasks/${task._id}`,
-        payload
-      );
+      const res = await api.patch(`/tasks/${task._id}`, payload);
 
-      // IMPORTANT: always use backend response
-      if (onTaskUpdated) {
-        onTaskUpdated(res.data);
-      }
+      onTaskUpdated?.(res.data);
+
+      await Swal.fire({
+        icon: "success",
+        title: "Task Updated!",
+        text: "Your task has been updated successfully.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
 
       onClose();
     } catch (err) {
       console.error("Update failed:", err);
+
+      Swal.fire({
+        icon: "error",
+        title: "Update Failed",
+        text: "Something went wrong while updating the task.",
+      });
     } finally {
       setLoading(false);
     }
   };
 
-  // Safety: don't render if closed
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-[#0f172a] w-full max-w-md rounded-2xl border border-white/10 p-6">
-
-        <h2 className="text-2xl font-bold mb-5">
-          Edit Task
-        </h2>
+        <h2 className="text-2xl font-bold mb-5">Edit Task</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-
-          {/* TITLE */}
           <input
             name="title"
             value={form.title}
@@ -104,7 +99,6 @@ export default function EditTaskModal({
             required
           />
 
-          {/* DESCRIPTION */}
           <textarea
             name="description"
             value={form.description}
@@ -114,19 +108,36 @@ export default function EditTaskModal({
             rows="4"
           />
 
-          {/* PRIORITY */}
           <select
             name="priority"
             value={form.priority}
             onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-white/5 border border-white/10"
+            className="
+            w-full
+            p-3
+            rounded-lg
+          bg-slate-800
+          text-white
+            border
+        border-white/10
+         focus:outline-none
+         focus:ring-2
+       focus:ring-purple-500
+          "
           >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
+            <option value="low" className="bg-slate-800 text-white">
+              Low Priority
+            </option>
+
+            <option value="medium" className="bg-slate-800 text-white">
+              Medium Priority
+            </option>
+
+            <option value="high" className="bg-slate-800 text-white">
+              High Priority
+            </option>
           </select>
 
-          {/* DUE DATE */}
           <input
             type="date"
             name="dueDate"
@@ -135,7 +146,6 @@ export default function EditTaskModal({
             className="w-full p-3 rounded-lg bg-white/5 border border-white/10"
           />
 
-          {/* COMPLETED */}
           <label className="flex items-center gap-2 text-sm text-gray-300">
             <input
               type="checkbox"
@@ -146,9 +156,7 @@ export default function EditTaskModal({
             Completed
           </label>
 
-          {/* ACTIONS */}
           <div className="flex gap-3 pt-4">
-
             <button
               type="button"
               onClick={onClose}
@@ -163,11 +171,8 @@ export default function EditTaskModal({
             >
               {loading ? "Saving..." : "Update"}
             </button>
-
           </div>
-
         </form>
-
       </div>
     </div>
   );
