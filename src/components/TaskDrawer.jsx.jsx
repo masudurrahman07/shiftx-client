@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 
-export default function CreateTaskDrawer({ open, onClose, onTaskCreated }) {
+export default function TaskDrawer({ open, onClose, onTaskCreated }) {
   const [form, setForm] = useState({
     title: "",
     description: "",

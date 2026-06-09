@@ -11,6 +11,16 @@ api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
 
+  if (config.url && config.url.includes("[object")) {
+    console.error(
+      "Invalid API URL — object passed as ID instead of string:",
+      config.url
+    );
+    return Promise.reject(
+      new Error("Invalid request URL: object passed as ID")
+    );
+  }
+
   return config;
 });
 
