@@ -78,23 +78,20 @@ export default function TaskDrawer({ open, onClose, onTaskCreated }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex"
-        >
+          className="fixed inset-0 z-50 flex">
           <motion.div
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-          />
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"/>
 
           <motion.aside
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 240, damping: 28 }}
-            className="relative ml-auto h-full w-full max-w-md overflow-y-auto bg-[#0f172a] border-l border-white/10 shadow-2xl"
-          >
+            className="relative ml-auto h-full w-full max-w-md overflow-y-auto bg-[#0f172a] border-l border-white/10 shadow-2xl">
             <form onSubmit={handleSubmit} className="p-6 space-y-5">
               <h2 className="text-2xl font-bold">Create Task</h2>
 
@@ -104,8 +101,7 @@ export default function TaskDrawer({ open, onClose, onTaskCreated }) {
                 onChange={handleChange}
                 placeholder="Task title"
                 className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
+                required/>
 
               <textarea
                 name="description"
@@ -113,15 +109,13 @@ export default function TaskDrawer({ open, onClose, onTaskCreated }) {
                 onChange={handleChange}
                 placeholder="Description"
                 className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                rows="4"
-              />
+                rows="4"/>
 
               <select
                 name="priority"
                 value={form.priority}
                 onChange={handleChange}
-                className="w-full p-3 rounded-2xl bg-slate-800 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
+                className="w-full p-3 rounded-2xl bg-slate-800 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 <option value="low" className="bg-slate-800 text-white">
                   Low Priority
                 </option>
@@ -138,23 +132,19 @@ export default function TaskDrawer({ open, onClose, onTaskCreated }) {
                 name="dueDate"
                 value={form.dueDate}
                 onChange={handleChange}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              />
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500"/>
 
               <div className="flex gap-3 pt-4">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-3 rounded-2xl border border-white/20 text-slate-200 transition hover:bg-white/5"
-                >
-                  Cancel
-                </button>
+                  className="flex-1 py-3 rounded-2xl border border-white/20 text-slate-200 transition hover:bg-white/5">
+                  Cancel</button>
                 <motion.button
                   disabled={loading}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 font-semibold text-white transition disabled:opacity-60"
-                >
+                  className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 font-semibold text-white transition disabled:opacity-60">
                   {loading ? "Creating..." : "Create"}
                 </motion.button>
               </div>

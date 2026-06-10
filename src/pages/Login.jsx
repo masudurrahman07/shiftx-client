@@ -53,8 +53,7 @@ export default function Login() {
       exit="exit"
       variants={pageVariants}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="w-full max-w-md"
-    >
+      className="w-full max-w-md">
       <div className="bg-[#171f33]/70 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold">Welcome Back</h1>
@@ -65,8 +64,7 @@ export default function Login() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-5 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400"
-          >
+            className="mb-5 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
             {error}
           </motion.div>
         )}
@@ -80,8 +78,7 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:outline-none focus:border-purple-500 transition"
-            />
+              className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:outline-none focus:border-purple-500 transition" />
           </div>
 
           <div>
@@ -93,13 +90,11 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:outline-none focus:border-purple-500 transition"
-              />
+                className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:outline-none focus:border-purple-500 transition"/>
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-400 hover:text-white"
-              >
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-400 hover:text-white">
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
@@ -108,10 +103,8 @@ export default function Login() {
           <div className="flex justify-end">
             <button
               type="button"
-              className="text-sm text-purple-400 hover:text-purple-300"
-            >
-              Forgot Password?
-            </button>
+              className="text-sm text-purple-400 hover:text-purple-300">
+              Forgot Password?</button>
           </div>
 
           <motion.button
@@ -119,8 +112,7 @@ export default function Login() {
             disabled={loading}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:opacity-90 transition disabled:opacity-50"
-          >
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:opacity-90 transition disabled:opacity-50">
             {loading ? "Signing In..." : "Sign In"}
           </motion.button>
         </form>

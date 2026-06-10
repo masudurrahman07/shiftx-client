@@ -88,8 +88,7 @@ export default function Register() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="text-center mb-8"
-        >
+          className="text-center mb-8">
           <h1 className="text-4xl font-bold">Create Account</h1>
           <p className="text-gray-400 mt-2">Join ShiftX and start managing your work smarter</p>
         </motion.div>
@@ -98,8 +97,7 @@ export default function Register() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400"
-          >
+            className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
             {error}
           </motion.div>
         )}
@@ -108,8 +106,7 @@ export default function Register() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-4 rounded-xl border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-400"
-          >
+            className="mb-4 rounded-xl border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-400">
             {success}
           </motion.div>
         )}
@@ -124,8 +121,7 @@ export default function Register() {
               onChange={handleChange}
               required
               className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:border-purple-500 focus:outline-none"
-              placeholder="Type Your Name"
-            />
+              placeholder="Type Your Name"/>
           </div>
 
           <div>
@@ -137,8 +133,7 @@ export default function Register() {
               onChange={handleChange}
               required
               className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:border-purple-500 focus:outline-none"
-              placeholder="Type Your Email"
-            />
+              placeholder="Type Your Email" />
           </div>
 
           <div>
@@ -150,8 +145,7 @@ export default function Register() {
               onChange={handleChange}
               required
               className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:border-purple-500 focus:outline-none"
-              placeholder="Enter password"
-            />
+              placeholder="Enter password" />
           </div>
 
           <div>
@@ -163,8 +157,7 @@ export default function Register() {
               onChange={handleChange}
               required
               className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:border-purple-500 focus:outline-none"
-              placeholder="Confirm password"
-            />
+              placeholder="Confirm password"/>
           </div>
 
           <motion.button
@@ -172,8 +165,7 @@ export default function Register() {
             disabled={loading}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
-          >
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 font-semibold text-white transition hover:opacity-90 disabled:opacity-50">
             {loading ? "Creating Account..." : "Create Account"}
           </motion.button>
         </form>

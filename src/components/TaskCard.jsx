@@ -17,8 +17,7 @@ export default function TaskCard({
       transition={{ type: "spring", stiffness: 240, damping: 24 }}
       whileHover={{ y: -4, scale: 1.01 }}
       whileTap={{ scale: 0.995 }}
-      className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl shadow-black/25 hover:border-indigo-500/40"
-    >
+      className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl shadow-black/25 hover:border-indigo-500/40">
       <div className="flex justify-between items-start gap-3">
         <span className={`text-xs px-3 py-1 rounded-full ${
           task.completed
@@ -30,14 +29,12 @@ export default function TaskCard({
 
         <motion.label
           whileHover={{ scale: 1.03 }}
-          className="flex items-center gap-2 text-slate-300"
-        >
+          className="flex items-center gap-2 text-slate-300">
           <input
             type="checkbox"
             checked={Boolean(task.completed)}
             onChange={() => onToggle?.(task)}
-            className="h-4 w-4 rounded border-white/10 bg-slate-900 text-purple-500 focus:ring-purple-500"
-          />
+            className="h-4 w-4 rounded border-white/10 bg-slate-900 text-purple-500 focus:ring-purple-500"/>
           <span className="text-xs">Toggle</span>
         </motion.label>
       </div>
@@ -60,14 +57,12 @@ export default function TaskCard({
       <div className="mt-6 flex justify-end gap-4">
         <button
           onClick={() => onEdit?.(task)}
-          className="text-blue-400 hover:text-blue-300 text-sm transition"
-        >
+          className="text-blue-400 hover:text-blue-300 text-sm transition">
           Edit
         </button>
         <button
           onClick={() => onDelete?.(task._id)}
-          className="text-red-400 hover:text-red-300 text-sm transition"
-        >
+          className="text-red-400 hover:text-red-300 text-sm transition">
           Delete
         </button>
       </div>

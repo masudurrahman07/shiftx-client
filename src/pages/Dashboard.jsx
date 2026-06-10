@@ -24,7 +24,7 @@ export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
 
-  // PAGINATION
+
   const [currentPage, setCurrentPage] = useState(1);
   const TASKS_PER_PAGE = 5;
 
@@ -46,15 +46,15 @@ export default function Dashboard() {
     }
   };
 
-  // CREATE TASK
+  
   const handleTaskCreated = (task) => {
     setTasks((prev) => [task, ...prev]);
 
-    // always show newest task on first page
+    
     setCurrentPage(1);
   };
 
-  // TOGGLE COMPLETE
+  
   const toggleTask = async (task) => {
     if (!task?._id) return;
 
@@ -73,7 +73,7 @@ export default function Dashboard() {
     }
   };
 
-  // DELETE TASK
+
   const deleteTask = async (id) => {
     const result = await Swal.fire({
       title: "Delete Task?",
@@ -124,7 +124,7 @@ export default function Dashboard() {
     }
   };
 
-  // UPDATE TASK
+ 
   const handleTaskUpdated = (updatedTask) => {
     setTasks((prev) =>
       prev.map((t) =>
@@ -135,7 +135,7 @@ export default function Dashboard() {
     );
   };
 
-  // FILTER LOGIC
+
   const filteredTasks = tasks.filter((task) => {
     const matchesSearch = task.title
       ?.toLowerCase()
@@ -151,7 +151,7 @@ export default function Dashboard() {
     return matchesSearch && matchesFilter;
   });
 
-  // PAGINATION CALCULATIONS
+ 
   const totalPages = Math.ceil(
     filteredTasks.length / TASKS_PER_PAGE
   );
@@ -165,7 +165,7 @@ export default function Dashboard() {
       startIndex + TASKS_PER_PAGE
     );
 
-  // if page becomes invalid after delete/filter
+
   useEffect(() => {
     if (
       currentPage > totalPages &&
@@ -192,8 +192,7 @@ export default function Dashboard() {
       exit="exit"
       variants={pageVariants}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="min-h-screen bg-slate-950 text-slate-100"
-    >
+      className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 p-6 shadow-2xl shadow-black/40 backdrop-blur-2xl before:absolute before:-left-24 before:-top-24 before:h-72 before:w-72 before:rounded-full before:bg-fuchsia-500/10 before:blur-3xl after:absolute after:-right-24 after:top-20 after:h-72 after:w-72 after:rounded-full after:bg-cyan-400/10 after:blur-3xl">
           <div className="relative z-10 space-y-8">
@@ -215,15 +214,13 @@ export default function Dashboard() {
                   onClick={() => setDrawerOpen(true)}
                   whileHover={{ y: -2, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 rounded-3xl border border-white/10 bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition"
-                >
+                  className="inline-flex items-center gap-2 rounded-3xl border border-white/10 bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition">
                   <FiPlus className="h-5 w-5" />
                   Create Task
                 </motion.button>
                 <button
                   onClick={() => setDrawerOpen(true)}
-                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/20 text-white shadow-lg shadow-black/30 transition-transform duration-300 hover:-translate-y-1 sm:hidden"
-                >
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/20 text-white shadow-lg shadow-black/30 transition-transform duration-300 hover:-translate-y-1 sm:hidden">
                   <FiPlus className="h-5 w-5" />
                 </button>
               </div>
@@ -244,8 +241,7 @@ export default function Dashboard() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search tasks..."
-                    className="w-full bg-transparent text-slate-100 placeholder:text-slate-500 focus:outline-none"
-                  />
+                    className="w-full bg-transparent text-slate-100 placeholder:text-slate-500 focus:outline-none"/>
                 </div>
               </div>
 
@@ -260,8 +256,7 @@ export default function Dashboard() {
                     id="filter-select"
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
-                    className="w-full appearance-none bg-transparent text-slate-100 focus:outline-none"
-                  >
+                    className="w-full appearance-none bg-transparent text-slate-100 focus:outline-none">
                     <option value="all">All Tasks</option>
                     <option value="completed">Completed</option>
                     <option value="pending">Pending</option>
@@ -281,14 +276,12 @@ export default function Dashboard() {
               <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/80">Nothing here yet</p>
               <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">Your task list is empty.</h2>
               <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-slate-400">
-                Create your first task or adjust the filters to discover existing items. Your productivity flow begins here.
-              </p>
+                Create your first task or adjust the filters to discover existing items. Your productivity flow begins here.</p>
               <motion.button
                 onClick={() => setDrawerOpen(true)}
                 whileHover={{ y: -2, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition"
-              >
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition">
                 Create task
               </motion.button>
             </div>
@@ -302,8 +295,7 @@ export default function Dashboard() {
                       task={task}
                       onToggle={toggleTask}
                       onDelete={deleteTask}
-                      onEdit={(task) => setEditingTask(task)}
-                    />
+                      onEdit={(task) => setEditingTask(task)}/>
                   ))}
                 </AnimatePresence>
               </div>
@@ -320,8 +312,7 @@ export default function Dashboard() {
                         currentPage === i + 1
                           ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30"
                           : "bg-white/5 text-slate-300 hover:bg-white/15"
-                      }`}
-                    >
+                      }`}>
                       {i + 1}
                     </motion.button>
                   ))}
@@ -335,15 +326,13 @@ export default function Dashboard() {
       <TaskDrawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        onTaskCreated={handleTaskCreated}
-      />
+        onTaskCreated={handleTaskCreated}/>
 
       <EditTaskModal
         open={!!editingTask}
         task={editingTask}
         onClose={() => setEditingTask(null)}
-        onTaskUpdated={handleTaskUpdated}
-      />
+        onTaskUpdated={handleTaskUpdated}/>
     </motion.main>
   );
 }
@@ -355,16 +344,14 @@ function Stat({ label, value, color = "text-white" }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
       whileHover={{ y: -4, scale: 1.01 }}
-      className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl"
-    >
+      className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-400 opacity-80" />
       <p className="text-sm text-slate-400">{label}</p>
       <motion.h2
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className={`mt-4 text-4xl font-semibold ${color}`}
-      >
+        className={`mt-4 text-4xl font-semibold ${color}`}>
         {value}
       </motion.h2>
     </motion.div>

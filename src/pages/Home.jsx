@@ -49,8 +49,7 @@ export default function Home() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="mx-auto max-w-4xl text-center"
-          >
+            className="mx-auto max-w-4xl text-center">
             <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium uppercase tracking-[0.24em] text-slate-200/80 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
               Modern SaaS task platform
             </span>
@@ -70,8 +69,7 @@ export default function Home() {
                 <>
                   <Link
                     to="/dashboard"
-                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-violet-600/20 transition-transform duration-300 hover:-translate-y-1"
-                  >
+                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-violet-600/20 transition-transform duration-300 hover:-translate-y-1">
                     Open Dashboard
                   </Link>
                   <span className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-slate-200">
@@ -82,14 +80,12 @@ export default function Home() {
                 <>
                   <Link
                     to="/register"
-                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-violet-600/20 transition-transform duration-300 hover:-translate-y-1"
-                  >
+                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-violet-600/20 transition-transform duration-300 hover:-translate-y-1">
                     Get Started Free
                   </Link>
                   <Link
                     to="/login"
-                    className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-4 text-base font-semibold text-slate-100 transition hover:border-violet-400"
-                  >
+                    className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-4 text-base font-semibold text-slate-100 transition hover:border-violet-400">
                     Sign In
                   </Link>
                 </>
@@ -102,8 +98,7 @@ export default function Home() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-            className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
-          >
+            className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {featureCards.map((feature) => {
               const Icon = feature.icon;
               return (
@@ -128,8 +123,7 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="space-y-6"
-          >
+            className="space-y-6">
             <span className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/90">
               Why choose ShiftX
             </span>
@@ -169,8 +163,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
-            className="space-y-6"
-          >
+            className="space-y-6">
             <div className="glass flex flex-col gap-5 rounded-[2rem] border border-white/10 bg-slate-900/70 p-8 shadow-2xl shadow-black/20 backdrop-blur-xl">
               <div className="rounded-3xl bg-gradient-to-r from-violet-500/10 via-fuchsia-500/10 to-cyan-400/10 p-6">
                 <p className="text-sm uppercase tracking-[0.28em] text-cyan-300">Launch faster</p>
@@ -208,14 +201,12 @@ export default function Home() {
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-end">
               <Link
                 to={user ? "/dashboard" : "/register"}
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-8 py-4 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition-transform duration-300 hover:-translate-y-1"
-              >
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-8 py-4 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition-transform duration-300 hover:-translate-y-1">
                 {user ? "Go to Dashboard" : "Start Free Trial"}
               </Link>
               <Link
                 to="/login"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-7 py-4 text-sm font-semibold text-slate-100 transition hover:border-cyan-300"
-              >
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-7 py-4 text-sm font-semibold text-slate-100 transition hover:border-cyan-300">
                 Learn More
               </Link>
             </div>

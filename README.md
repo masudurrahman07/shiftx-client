@@ -1,10 +1,42 @@
-# shiftx-client
+# 🚀 ShiftX - Task Management App
 
-Vite + React starter with Tailwind, React Router, Axios, SweetAlert2, React Icons, and Framer Motion.
+ShiftX is a modern full-stack Task Management Web Application built using the MERN stack (MongoDB, Express, React, Node.js). It provides a clean, responsive, and secure system to manage daily tasks efficiently.
 
-Quick start:
+---
 
+## ✨ Features
+
+- User Authentication (Register / Login with JWT)
+- Create, Update, Delete Tasks
+- Mark tasks as Completed / Pending
+- Search and Filter Tasks
+- Pagination (5 tasks per page)
+- Responsive Modern UI
+- Secure API with middleware protection
+- Animated and clean dashboard experience
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React.js
+- Tailwind CSS
+- Axios
+- SweetAlert2
+- Framer Motion (animations)
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- bcrypt.js
+
+---
+
+## 📦 Installation
+
+### Clone the repository
 ```bash
-npm install
-npm run dev
-```
+git clone your-repo-link

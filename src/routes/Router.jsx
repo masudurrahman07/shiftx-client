@@ -24,9 +24,7 @@ function AnimatedRoutes() {
             element={
               <PrivateRoute>
                 <Dashboard />
-              </PrivateRoute>
-            }
-          />
+              </PrivateRoute>}/>
         </Route>
 
         <Route element={<AuthLayout />}>

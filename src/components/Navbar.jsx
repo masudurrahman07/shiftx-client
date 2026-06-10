@@ -25,40 +25,35 @@ export default function Navbar() {
       {/* Logo */}
       <Link
         to="/"
-        className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
-      >
+        className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
         ShiftX
       </Link>
 
-      {/* Nav */}
+     
       <div className="hidden md:flex gap-6">
         <NavLink to="/" className={linkClass}>Home</NavLink>
         <NavLink to="/dashboard" className={linkClass}>Dashboard</NavLink>
       </div>
 
-      {/* AUTH AREA */}
+      
       {!user ? (
         <div className="flex gap-3">
           <Link
             to="/login"
-            className="px-4 py-2 rounded-lg border border-white/20 text-gray-300 hover:text-white"
-          >
+            className="px-4 py-2 rounded-lg border border-white/20 text-gray-300 hover:text-white">
             Login
           </Link>
 
           <Link
             to="/register"
-            className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white"
-          >
-            Register
-          </Link>
+            className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+            Register </Link>
         </div>
       ) : (
         <div className="relative">
           <button
             onClick={() => setOpen(!open)}
-            className="px-4 py-2 rounded-lg bg-white/10 border border-white/10"
-          >
+            className="px-4 py-2 rounded-lg bg-white/10 border border-white/10">
             Profile ▾
           </button>
 
@@ -66,15 +61,13 @@ export default function Navbar() {
             <div className="absolute right-0 mt-2 w-48 bg-[#111a2e] border border-white/10 rounded-xl shadow-xl overflow-hidden">
               <button
                 onClick={() => navigate("/dashboard")}
-                className="w-full text-left px-4 py-2 hover:bg-white/10"
-              >
+                className="w-full text-left px-4 py-2 hover:bg-white/10">
                 Dashboard
               </button>
 
               <button
                 onClick={handleLogout}
-                className="w-full text-left px-4 py-2 hover:bg-red-500/10 text-red-400"
-              >
+                className="w-full text-left px-4 py-2 hover:bg-red-500/10 text-red-400">
                 Logout
               </button>
             </div>
