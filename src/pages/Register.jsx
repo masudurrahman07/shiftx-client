@@ -1,7 +1,14 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+const pageVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -24 },
+};
 
 export default function Register() {
   const navigate = useNavigate();
@@ -68,38 +75,48 @@ export default function Register() {
   };
 
   return (
-    <div className="w-full max-w-md">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={pageVariants}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className="w-full max-w-md"
+    >
       <div className="bg-[#171f33]/70 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold">
-            Create Account
-          </h1>
-
-          <p className="text-gray-400 mt-2">
-            Join ShiftX and start managing your work smarter
-          </p>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="text-center mb-8"
+        >
+          <h1 className="text-4xl font-bold">Create Account</h1>
+          <p className="text-gray-400 mt-2">Join ShiftX and start managing your work smarter</p>
+        </motion.div>
 
         {error && (
-          <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400"
+          >
             {error}
-          </div>
+          </motion.div>
         )}
 
         {success && (
-          <div className="mb-4 rounded-xl border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-400">
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-4 rounded-xl border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-400"
+          >
             {success}
-          </div>
+          </motion.div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
-
           <div>
-            <label className="block mb-2 text-sm text-gray-300">
-              Full Name
-            </label>
-
+            <label className="block mb-2 text-sm text-gray-300">Full Name</label>
             <input
               type="text"
               name="name"
@@ -112,10 +129,7 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block mb-2 text-sm text-gray-300">
-              Email
-            </label>
-
+            <label className="block mb-2 text-sm text-gray-300">Email</label>
             <input
               type="email"
               name="email"
@@ -128,10 +142,7 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block mb-2 text-sm text-gray-300">
-              Password
-            </label>
-
+            <label className="block mb-2 text-sm text-gray-300">Password</label>
             <input
               type="password"
               name="password"
@@ -144,10 +155,7 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block mb-2 text-sm text-gray-300">
-              Confirm Password
-            </label>
-
+            <label className="block mb-2 text-sm text-gray-300">Confirm Password</label>
             <input
               type="password"
               name="confirmPassword"
@@ -159,25 +167,24 @@ export default function Register() {
             />
           </div>
 
-          <button
+          <motion.button
             type="submit"
             disabled={loading}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
           >
             {loading ? "Creating Account..." : "Create Account"}
-          </button>
+          </motion.button>
         </form>
 
         <p className="text-center text-gray-400 text-sm mt-6">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-purple-400 hover:text-purple-300"
-          >
+          Already have an account?{' '}
+          <Link to="/login" className="text-purple-400 hover:text-purple-300">
             Login
           </Link>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }

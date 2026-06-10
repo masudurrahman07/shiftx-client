@@ -1,8 +1,14 @@
-import { useState } from "react";
+﻿import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import api from "../services/api";
-import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+
+const pageVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -24 },
+};
 
 export default function Login() {
   const navigate = useNavigate();
@@ -41,30 +47,33 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full max-w-md">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={pageVariants}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className="w-full max-w-md"
+    >
       <div className="bg-[#171f33]/70 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold">Welcome Back</h1>
-
           <p className="text-gray-400 mt-2">Sign in to continue to ShiftX</p>
         </div>
 
-        {/* Error */}
         {error && (
-          <div className="mb-5 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-5 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400"
+          >
             {error}
-          </div>
+          </motion.div>
         )}
 
-        {/* Form */}
         <form onSubmit={handleLogin} className="space-y-5">
-          {/* Email */}
           <div>
-            <label className="block mb-2 text-sm text-gray-300">
-              Email Address
-            </label>
-
+            <label className="block mb-2 text-sm text-gray-300">Email Address</label>
             <input
               type="email"
               placeholder="john@example.com"
@@ -75,10 +84,8 @@ export default function Login() {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="block mb-2 text-sm text-gray-300">Password</label>
-
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -88,7 +95,6 @@ export default function Login() {
                 required
                 className="w-full px-4 py-3 rounded-xl bg-[#0b1326] border border-white/10 focus:outline-none focus:border-purple-500 transition"
               />
-
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -99,7 +105,6 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Forgot Password */}
           <div className="flex justify-end">
             <button
               type="button"
@@ -109,27 +114,24 @@ export default function Login() {
             </button>
           </div>
 
-          {/* Submit */}
-          <button
+          <motion.button
             type="submit"
             disabled={loading}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:opacity-90 transition disabled:opacity-50"
           >
             {loading ? "Signing In..." : "Sign In"}
-          </button>
+          </motion.button>
         </form>
 
-        {/* Footer */}
         <p className="text-center text-sm text-gray-400 mt-6">
-          Don't have an account?{" "}
-          <Link
-            to="/register"
-            className="text-purple-400 hover:text-purple-300"
-          >
+          Don't have an account?{' '}
+          <Link to="/register" className="text-purple-400 hover:text-purple-300">
             Create Account
           </Link>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
