@@ -1,0 +1,32 @@
+name: CI
+
+# Run the workflow on pushes and pull requests targeting the main branch.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository so the workflow can access the project files.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Node.js 20 for the build environment.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Install dependencies with npm install as requested.
+      - name: Install dependencies
+        run: npm install
+
+      # Build the production bundle and fail the workflow if the build fails.
+      - name: Build app
+        run: npm run build
