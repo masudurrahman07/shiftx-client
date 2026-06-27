@@ -37,8 +37,12 @@ ShiftX is a modern full-stack Task Management Web Application built using the ME
 
 ---
 
-## 📦 Installation
+## Docker
 
-### Clone the repository
-```bash
-git clone your-repo-link
+### Build and Run
+
+docker compose up --build
+
+### Stop Containers
+
+docker compose down
